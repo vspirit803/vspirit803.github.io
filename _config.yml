@@ -20,6 +20,13 @@ permalink_pinyin:
   enable: true
   separator: '-' # default: '-'
 
+githubEmojis:
+  enable: true
+  className: github-emoji
+  inject: true
+  styles:
+  customEmojis:
+
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://vspirit803.github.io/

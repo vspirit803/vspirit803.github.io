@@ -11,6 +11,15 @@ author: vspirit803
 language: zh-CN
 timezone: ''
 
+
+search:
+  path: search.xml
+  field: post
+
+permalink_pinyin:
+  enable: true
+  separator: '-' # default: '-'
+
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://vspirit803.github.io/

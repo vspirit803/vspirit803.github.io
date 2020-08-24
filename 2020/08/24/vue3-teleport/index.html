@@ -398,7 +398,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    281
+                    383
                 </div>
                 
 
@@ -422,43 +422,43 @@
             <div id="articleContent">
                 <h2 id="Teleport"><a href="#Teleport" class="headerlink" title="Teleport"></a>Teleport</h2><p>在项目中，某些组件可能逻辑上是一体的，但是在 UI 层面是分开的。<br>比如主页面有 Header 和 Main 两个部分组成，Main 部分有可能会有多个页面，每个页面都有不同的按钮要显示在 Header 的工具栏中</p>
 <p>Vue2中一般会拆成两个组件，如 PageAMain, PageAToolbar，通过动态组件指定工具栏如何渲染。</p>
-<pre class="line-numbers language-Vue"><code class="language-Vue"><!--App.vue-->
-<template>
-  <div id="Header">
-    <div :is="componentName + 'Toolbar'" />
-  </div>
-  <div id="Main">
-    <div :is="componentName + 'Main'" />
-  </div>
-</template><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>而Vue3，则可以利用新增的 teleport 组件更优雅地解决这个问题<br>teleport 有一个必填的string类型参数to，可以是合法的选择器，该组件生效时，会把组件内部的内容渲染到to参数所选的dom节点下，如此可以将UI层面分开的部分，写在同一个组件里，例如</p>
-<pre class="line-numbers language-Vue"><code class="language-Vue"><!--App.vue-->
-<template>
-  <div id="Header">
-    <div id="toolbar" />
-  </div>
-  <Main />
-</template><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-Vue"><code class="language-Vue"><!--Page1.vue-->
-<template>
-  <div class="page1">
+<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--App.vue--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">:is</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>componentName + <span class="token punctuation">'</span>Toolbar<span class="token punctuation">'</span><span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Main<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">:is</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>componentName + <span class="token punctuation">'</span>Main<span class="token punctuation">'</span><span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>而Vue3，则可以利用新增的 teleport 组件更优雅地解决这个问题<br>teleport 有一个必填的string类型参数to，可以是合法的选择器，该组件生效时，会把组件内部的内容渲染到to参数定位的dom节点下，如此可以将UI层面分开的部分，写在同一个组件里，例如</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--App.vue--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Header<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>toolbar<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Main</span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--Page1.vue--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>page1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     这是第一个页面
-  </div>
-  <Teleport to="#tools">
-    <span>page1.工具1</span>
-    <span>page1.工具2</span>
-  </Teleport>
-</template><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-Vue"><code class="language-Vue"><!--Page2.vue-->
-<template>
-  <div class="page2">
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Teleport</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#tools<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>page1.工具1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>page1.工具2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Teleport</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!--Page2.vue--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>page2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
     这是第二个页面
-  </div>
-  <Teleport to="#tools">
-    <span>page2.工具3</span>
-    <span>page2.工具4</span>
-  </Teleport>
-</template><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Teleport</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#tools<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>page2.工具3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>page2.工具4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Teleport</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -865,7 +865,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">464</span>&nbsp;字
+                class="white-color">566</span>&nbsp;字
             
             
             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="test, Hexo">
+    <meta name="keywords" content="Vue3 Teleport, Hexo">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>test | Hexo</title>
+    <title>Vue3 Teleport | Hexo</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/vspirit803/vspirit803.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/vspirit803/vspirit803.github.io/libs/awesome/css/all.css">
@@ -246,12 +246,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/vspirit803/vspirit803.github.io/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/vspirit803/vspirit803.github.io/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">test</h1>
+                    <h1 class="description center-align post-title">Vue3 Teleport</h1>
                 </div>
             </div>
         </div>
@@ -368,12 +368,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/PS/">
-                                <span class="chip bg-color">PS</span>
-                            </a>
-                        
-                            <a href="/tags/Dota/">
-                                <span class="chip bg-color">Dota</span>
+                            <a href="/tags/Vue3/">
+                                <span class="chip bg-color">Vue3</span>
                             </a>
                         
                     </div>
@@ -388,7 +384,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-27
+                    2020-08-24
                 </div>
                 
 
@@ -402,7 +398,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    58
+                    281
                 </div>
                 
 
@@ -424,7 +420,45 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>我会PS，会玩Dota</p>
+                <h2 id="Teleport"><a href="#Teleport" class="headerlink" title="Teleport"></a>Teleport</h2><p>在项目中，某些组件可能逻辑上是一体的，但是在 UI 层面是分开的。<br>比如主页面有 Header 和 Main 两个部分组成，Main 部分有可能会有多个页面，每个页面都有不同的按钮要显示在 Header 的工具栏中</p>
+<p>Vue2中一般会拆成两个组件，如 PageAMain, PageAToolbar，通过动态组件指定工具栏如何渲染。</p>
+<pre class="line-numbers language-Vue"><code class="language-Vue"><!--App.vue-->
+<template>
+  <div id="Header">
+    <div :is="componentName + 'Toolbar'" />
+  </div>
+  <div id="Main">
+    <div :is="componentName + 'Main'" />
+  </div>
+</template><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>而Vue3，则可以利用新增的 teleport 组件更优雅地解决这个问题<br>teleport 有一个必填的string类型参数to，可以是合法的选择器，该组件生效时，会把组件内部的内容渲染到to参数所选的dom节点下，如此可以将UI层面分开的部分，写在同一个组件里，例如</p>
+<pre class="line-numbers language-Vue"><code class="language-Vue"><!--App.vue-->
+<template>
+  <div id="Header">
+    <div id="toolbar" />
+  </div>
+  <Main />
+</template><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-Vue"><code class="language-Vue"><!--Page1.vue-->
+<template>
+  <div class="page1">
+    这是第一个页面
+  </div>
+  <Teleport to="#tools">
+    <span>page1.工具1</span>
+    <span>page1.工具2</span>
+  </Teleport>
+</template><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-Vue"><code class="language-Vue"><!--Page2.vue-->
+<template>
+  <div class="page2">
+    这是第二个页面
+  </div>
+  <Teleport to="#tools">
+    <span>page2.工具3</span>
+    <span>page2.工具4</span>
+  </Teleport>
+</template><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -468,7 +502,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://vspirit803.github.io/2020/07/27/test/">https://vspirit803.github.io/2020/07/27/test/</a>
+                    <a href="https://vspirit803.github.io/2020/08/24/vue3-teleport/">https://vspirit803.github.io/2020/08/24/vue3-teleport/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -506,12 +540,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/PS/">
-                                    <span class="chip bg-color">PS</span>
-                                </a>
-                            
-                                <a href="/tags/Dota/">
-                                    <span class="chip bg-color">Dota</span>
+                                <a href="/tags/Vue3/">
+                                    <span class="chip bg-color">Vue3</span>
                                 </a>
                             
                         </div>
@@ -553,9 +583,57 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/08/24/vue3-teleport/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/vspirit803/vspirit803.github.io/medias/featureimages/14.jpg" class="responsive-img" alt="Vue3 Teleport">
+                        
+                        <span class="card-title">Vue3 Teleport</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Teleport在项目中，某些组件可能逻辑上是一体的，但是在 UI 层面是分开的。比如主页面有 Header 和 Main 两个部分组成，Main 部分有可能会有多个页面，每个页面都有不同的按钮要显示在 Header 的工具栏中
+Vue2中
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            vspirit803
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Vue3/">
+                        <span class="chip bg-color">Vue3</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/08/24/hello-world/">
                     <div class="card-image">
@@ -573,49 +651,8 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-24
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            vspirit803
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/07/27/test/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://cdn.jsdelivr.net/gh/vspirit803/vspirit803.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="test">
-                        
-                        <span class="card-title">test</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            我会PS，会玩Dota
-
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.s
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-24
                             </span>
                         <span class="publish-author">
                             
@@ -624,19 +661,6 @@
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/PS/">
-                        <span class="chip bg-color">PS</span>
-                    </a>
-                    
-                    <a href="/tags/Dota/">
-                        <span class="chip bg-color">Dota</span>
-                    </a>
-                    
                 </div>
                 
             </div>
